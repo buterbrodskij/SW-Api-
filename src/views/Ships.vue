@@ -132,27 +132,27 @@ export default class Films extends Vue {
   Filtrs(): void {
     switch (this.SelectVal) {
       case 'default':
-          this.defaultFiltr = this.ShipsArr.results;
-          break;
+        this.defaultFiltr = this.ShipsArr.results;
+        break;
 
       case 'more':
-          this.defaultFiltr = [];
-          this.defaultFiltr = this.ShipsArr.results.filter((item: any) => {
-            return parseInt(item.crew) < 10;
-          });
-          break;
+        this.defaultFiltr = [];
+        this.defaultFiltr = this.ShipsArr.results.filter((item: any) => {
+          return parseInt(item.crew) < 10;
+        });
+        break;
 
       case 'under':
-          this.defaultFiltr = [];
-          this.defaultFiltr = this.ShipsArr.results.filter((item: any) => {
-            return parseInt(item.crew) > 10;
-          });
-          break;
+        this.defaultFiltr = [];
+        this.defaultFiltr = this.ShipsArr.results.filter((item: any) => {
+          return parseInt(item.crew) > 10;
+        });
+        break;
     }
   }
-destroyed() {
-  this.ShowShips = true;
-  this.Curentinfo = null;
-}
+  destroyed() {
+    this.ShowShips = true;
+    this.Curentinfo = null;
+  }
 }
 </script>
