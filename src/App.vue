@@ -47,9 +47,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import Router from "vue-router";
-import { Component, Vue } from "vue-property-decorator";
+<script lang='ts'>
+import Router from 'vue-router';
+import { Component, Vue } from 'vue-property-decorator';
 import Actors from "./views/Actors.vue";
 import Films from "./views/Films.vue";
 import Ships from "./views/Ships.vue";
@@ -57,16 +57,16 @@ import Ships from "./views/Ships.vue";
   components: {
     Actors,
     Ships,
-    Films
-  }
+    Films,
+  },
 })
 export default class App extends Vue {
-  HiddenMenu:boolean = false;
+  HiddenMenu: boolean = false;
 
-  showMenu(){
-    if(this.HiddenMenu === false){
+  showMenu() {
+    if (this.HiddenMenu === false) {
       this.HiddenMenu = true;
-    }else{
+    } else {
       this.HiddenMenu = false;
     }
   }
