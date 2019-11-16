@@ -1,0 +1,209 @@
+.nav-logo-block{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .logo-block{
+    img{
+      width: 200px;
+      height: 150px;
+    }
+  }
+  nav{
+    .nav-list{
+      padding-left: 0px;
+      list-style-type: none;
+      display: flex;
+      li:first-child{
+        margin-left: 0px;
+      }
+      &__item{
+        margin-left: 50px;
+        a{
+          font-size: 24px;
+          color: #000;
+        }
+      }
+      .router-link-exact-active{
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.index-content{
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.index-block {
+  display: flex;
+  justify-content: space-between;
+  &-content {
+    flex-basis: 40%;
+    &-list {
+      padding-left: 0;
+      margin-bottom: 0;
+      width: 100%;
+      list-style: none;
+      &__item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        h4 {
+          font-size: 18px;
+          font-weight: normal;
+        }
+        button {
+          background-color: unset;
+          border:none;
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+    .pagination{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 30px;
+      .prev-btn{
+        margin-right: auto;
+        transform: rotate(180deg);
+      }
+      button{
+        background-color: unset;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+    }
+  }
+  &-serach{
+    display: flex;
+    .search-block{
+      margin-right: 20px;
+      display: flex;
+      align-items: flex-start;
+      input{
+        height: 30px;
+      }
+      button{
+        border:none;
+        background-color: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -35px;
+        margin-top: 3px;
+        svg{
+          width: 20px;
+        }
+      }
+    }
+    .filtr-block{
+      select{
+        height: 30px;
+      }
+    }
+  }
+}
+.Popup{
+  position: fixed;
+  top: 50%;
+  transform: translate(0,-50%);
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  right: 0;
+  margin: 0 auto;
+  .info{
+      width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      position: relative;
+      border-radius: 5%;
+      z-index: 99;
+      padding: 25px;
+      &-content{
+        &__title{
+          text-align: center;
+          padding-top: 10px;
+          padding-bottom: 20px;
+          border-bottom:1px solid #000;
+        }
+        &-list{
+          margin-top: 20px;
+          list-style-type: none;
+          padding-left: 0;
+          max-height: 50vh;
+          overflow-y: scroll;
+          &__item{
+            font-size: 16px;
+            font-weight: 400;
+            span{
+              font-weight: 700;
+              margin-right: 5px;
+            }
+            .list-inner-preloader{
+              width: 20px;
+            }
+            &-inner_list{
+              //max-height: 15vh;
+              //overflow-y: scroll;
+            }
+          }
+        }
+      }
+      .close-btn{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background-color: unset;
+        border: none;
+        svg{
+          width: 20px;
+        }
+      }
+  }
+  &:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    right: 0;
+    background-color: rgba(0,0,0,0.8)
+  }
+}
+
+//preloader
+.preloader{  
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  transform: translate(0,-50%);
+}
+.modal-preloader{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.triiger{
+  display: none;
+  svg{
+    width: 32px;
+  }
+}
+@import 'media.less';
