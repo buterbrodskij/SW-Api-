@@ -77,10 +77,10 @@ import ActorsModalVue from '../components/ActorsModal.vue';
 })
 
 export default class Actors extends Vue {
-  isVisble: Boolean = false;
+  isVisble: boolean = false;
   Curentinfo: ResultsActors | null = null;
   searchText: string = "";
-  SelectVal: string = "default";
+  SelectVal: string = 'default';
   ActorsArray: ActorsModels | any = null;
   ShowActors = true;
   defaultFiltr: ActorsModels | any = null;
@@ -124,7 +124,7 @@ export default class Actors extends Vue {
       this.ShowActors = false;
       this.ActorsArray = ActorsModules.actors;
       this.Filtrs();
-    })
+    });
   }
   Filtrs(event: any = null): void{
     switch (this.SelectVal) {
@@ -132,17 +132,17 @@ export default class Actors extends Vue {
         this.defaultFiltr = this.ActorsArray.results;
         break;
 
-      case "mass":
+      case 'mass':
         this.defaultFiltr = [];
         this.defaultFiltr = this.ActorsArray.results.filter((item: any) => {
-          return parseInt(item.mass) > 100;
+          return parseInt(item.mass,10) > 100;
         });
         break;
 
       case 'height':
         this.defaultFiltr = [];
         this.defaultFiltr = this.ActorsArray.results.filter((item: any) => {
-          return parseInt(item.height) > 100;
+          return parseInt(item.height,10) > 100;
         });
         break;
     }
