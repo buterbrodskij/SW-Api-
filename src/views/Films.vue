@@ -58,62 +58,62 @@ components: {
 
 
 export default class Films extends Vue {
-      isVisble: boolean = false;
-      Curentinfo: ResultsFilms | null = null;
-      disabled: boolean = false;
-      searchText: string = '';
-      defaultFiltr: FilmsModels | any = null;
-      SelectVal: string = 'default';
-      FilmsArray: FilmsModels | any = null;
-      ShowFilms = true;
+  isVisble: boolean = false;
+  Curentinfo: ResultsFilms | null = null;
+  disabled: boolean = false;
+  searchText: string = '';
+  defaultFiltr: FilmsModels | any = null;
+  SelectVal: string = 'default';
+  FilmsArray: FilmsModels | any = null;
+  ShowFilms = true;
 
-      created() {
-        FilmsModules.AllFilmsFun().then(() => {
-          const AllFilms: FilmsModels | any = FilmsModules.AllFilms;
-          this.FilmsArray = AllFilms;
-          this.defaultFiltr = AllFilms.results;
-          this.ShowFilms = false;
-        });
-      }
-      ShowModal(index: number) {
-        this.Curentinfo = this.defaultFiltr[index];
-        this.isVisble = true;
-        bus.$emit('OpenModal2', this.defaultFiltr[index]);
-      }
-      CloseModalInner() {
-        this.isVisble = false;
-      }
-      SearchFilms() {
-          this.ShowFilms = true;
-          FilmsModules.SearchAllFilms(this.searchText).then(() => {
-            this.ShowFilms = false;
-            this.FilmsArray = FilmsModules.films;
-            this.Filtrs();
+  created() {
+    FilmsModules.AllFilmsFun().then(() => {
+      const AllFilms: FilmsModels | any = FilmsModules.AllFilms;
+      this.FilmsArray = AllFilms;
+      this.defaultFiltr = AllFilms.results;
+      this.ShowFilms = false;
+    });
+  }
+  ShowModal(index: number) {
+    this.Curentinfo = this.defaultFiltr[index];
+    this.isVisble = true;
+    bus.$emit('OpenModal2', this.defaultFiltr[index]);
+  }
+  CloseModalInner() {
+    this.isVisble = false;
+  }
+  SearchFilms() {
+    this.ShowFilms = true;
+    FilmsModules.SearchAllFilms(this.searchText).then(() => {
+      this.ShowFilms = false;
+      this.FilmsArray = FilmsModules.films;
+      this.Filtrs();
+    });
+  }
+  Filtrs(event: any = null): void {
+    switch (this.SelectVal) {
+      case 'default':
+        this.defaultFiltr = this.FilmsArray.results;
+        break;
+
+      case 'OldFilms':
+        this.defaultFiltr = [];
+        this.defaultFiltr = this.FilmsArray.results.filter((item: any) => {
+            return parseInt(item.release_date.substr(0, 4), 10) < 2000;
           });
-      }
-      Filtrs(event: any = null): void {
-        switch (this.SelectVal) {
-          case 'default':
-             this.defaultFiltr = this.FilmsArray.results;
           break;
 
-          case 'OldFilms':
-              this.defaultFiltr = [];
-              this.defaultFiltr = this.FilmsArray.results.filter((item: any) => {
-                  return parseInt(item.release_date.substr(0, 4), 10) < 2000;
-               });
-                break;
-
-          case 'NewFilms':
-              this.defaultFiltr = [];
-              this.defaultFiltr = this.FilmsArray.results.filter((item: any) => {
-                return parseInt(item.release_date.substr(0, 4), 10) >= 2000;
-              });
-            break;
-        }
-      }
-      destroyed() {
-        this.ShowFilms = true;
-      }
+      case 'NewFilms':
+        this.defaultFiltr = [];
+        this.defaultFiltr = this.FilmsArray.results.filter((item: any) => {
+          return parseInt(item.release_date.substr(0, 4), 10) >= 2000;
+        });
+        break;
+    }
+  }
+  destroyed() {
+    this.ShowFilms = true;
+  }
 }
 </script>
