@@ -77,79 +77,78 @@ import ActorsModalVue from '../components/ActorsModal.vue';
 })
 
 export default class Actors extends Vue {
-      isVisble: Boolean = false;
-      Curentinfo: ResultsActors | null = null;
-      searchText: string = "";
-      SelectVal: string = "default";
-      ActorsArray: ActorsModels | any = null;
-      ShowActors = true;
-      defaultFiltr: ActorsModels | any = null;
-      created() {
-          ActorsModules.AllActorsFun().then(() => {
-            const AllActors : ActorsModels | any  = ActorsModules.GetActors
-            this.ActorsArray = AllActors;
-            this.defaultFiltr = AllActors.results;
-            this.ShowActors = false;
+  isVisble: Boolean = false;
+  Curentinfo: ResultsActors | null = null;
+  searchText: string = "";
+  SelectVal: string = "default";
+  ActorsArray: ActorsModels | any = null;
+  ShowActors = true;
+  defaultFiltr: ActorsModels | any = null;
+  created() {
+    ActorsModules.AllActorsFun().then(() => {
+      const AllActors : ActorsModels | any  = ActorsModules.GetActors
+      this.ActorsArray = AllActors;
+      this.defaultFiltr = AllActors.results;
+      this.ShowActors = false;
+    });
+  }
+
+  ShowModal(index: number) {
+    this.Curentinfo = this.defaultFiltr[index];
+    this.isVisble = true;
+    bus.$emit('OpenModal', this.defaultFiltr[index]);
+  }
+
+  CloseModalInner() {
+    this.isVisble = false;
+  }
+  PrevPage() {
+    this.ShowActors = true;
+    ActorsModules.FetchPrevPage(this.ActorsArray.previous).then(() => {
+      this.ShowActors = false;
+      this.ActorsArray = ActorsModules.actors;
+      this.Filtrs();
+    });
+  }
+  NextPage() {
+    this.ShowActors = true;
+    ActorsModules.FetchNextPage(this.ActorsArray.next).then(() => {
+      this.ShowActors = false;
+      this.ActorsArray = ActorsModules.actors;
+      this.Filtrs();
+    });
+  }
+  SearchActors() {
+    this.ShowActors = true;
+    ActorsModules.FetchSearch(this.searchText).then(() => {
+      this.ShowActors = false;
+      this.ActorsArray = ActorsModules.actors;
+      this.Filtrs();
+    })
+  }
+  Filtrs(event: any = null): void{
+    switch (this.SelectVal) {
+      case 'default':
+        this.defaultFiltr = this.ActorsArray.results;
+        break;
+
+      case "mass":
+        this.defaultFiltr = [];
+        this.defaultFiltr = this.ActorsArray.results.filter((item: any) => {
+          return parseInt(item.mass) > 100;
         });
-      }
+        break;
 
-      ShowModal(index: number) {
-        this.Curentinfo = this.defaultFiltr[index];
-        this.isVisble = true;
-        bus.$emit('OpenModal', this.defaultFiltr[index]);
-      }
-
-      CloseModalInner() {
-        this.isVisble = false;
-      }
-      PrevPage() {
-          this.ShowActors = true;
-          ActorsModules.FetchPrevPage(this.ActorsArray.previous).then(() => {
-            this.ShowActors = false;
-            this.ActorsArray = ActorsModules.actors;
-            this.Filtrs();
+      case 'height':
+        this.defaultFiltr = [];
+        this.defaultFiltr = this.ActorsArray.results.filter((item: any) => {
+          return parseInt(item.height) > 100;
         });
-      }
-      NextPage() {
-        this.ShowActors = true;
-        ActorsModules.FetchNextPage(this.ActorsArray.next).then(() => {
-          this.ShowActors = false;
-          this.ActorsArray = ActorsModules.actors;
-          this.Filtrs();
-        });
-        
-      }
-      SearchActors() {
-        this.ShowActors = true;
-        ActorsModules.FetchSearch(this.searchText).then(() => {
-          this.ShowActors = false;
-          this.ActorsArray = ActorsModules.actors;
-          this.Filtrs();
-        })
-      }
-      Filtrs(event: any = null): void{
-        switch (this.SelectVal) {
-          case 'default':
-             this.defaultFiltr = this.ActorsArray.results;
-          break;
-
-          case "mass":
-              this.defaultFiltr = [];
-              this.defaultFiltr = this.ActorsArray.results.filter((item: any) => {
-                return parseInt(item.mass) > 100;
-              });
-          break;
-
-          case 'height':
-              this.defaultFiltr = [];
-              this.defaultFiltr = this.ActorsArray.results.filter((item: any) => {
-                return parseInt(item.height) > 100;
-              });
-          break;
-        };
-      }
-      destroyed() {
-        this.ShowActors = true;
-      }
+        break;
+    }
+  }
+  destroyed() {
+    this.ShowActors = true;
+  }
 }
 </script>
