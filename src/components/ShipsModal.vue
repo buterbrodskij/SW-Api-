@@ -67,59 +67,58 @@
 import axios from 'axios';
 import { bus } from '@/main';
 export default {
-    name:'ShipsModal',
-    props: {
-      info:{
-        type:Object | null,
-        required: true
-      },
-      active:{
-        type:Boolean
-      }
+  name:'ShipsModal',
+  props: {
+  info: {
+    type:Object | null,
+    required: true
     },
+    active:{
+    type:Boolean
+    }
+  },
     data(){
         return{
             pilotsArr:[],
             filmsarr:[],
             HaveFilms: true,
-            HavePilots : true
-        }
+            HavePilots : true,
+        };
     },
-    mounted(){
-      bus.$on('OpenModal3',(data)=>{
-        if(data.pilots.length != 0){
+    mounted() {
+      bus.$on('OpenModal3',(data)=> {
+        if(data.pilots.length != 0) {
           data.pilots.map(item => {
             axios.get(item).then(data => {
-              this.pilotsArr.push(data.data)
-            })
-          })
-        }else{
-          this.HavePilots = false
+              this.pilotsArr.push(data.data);
+            });
+          });
+        } else {
+          this.HavePilots = false;
         };
 
         if(data.films.length != 0){
           data.films.map(item => {
             axios.get(item).then(data => {
-              this.filmsarr.push(data.data)
-            })
-          })
-        }else{
-          this.HavePilots = false
+              this.filmsarr.push(data.data);
+            });
+          });
+        } else {
+          this.HavePilots = false;
         }
-      })
+      });
     },
-    methods:{
-        Refresh(){
-          this.pilotsArr = [];
-          this.HavePilots = true;
-          this.HaveFilms = true;
-          this.filmsarr = []
-        },
-        ClosePopUp(){
-            this.Refresh()
-             this.$emit('ClosePopUp');
-             
-        }
-    }
-}
+    methods: {
+      Refresh() {
+        this.pilotsArr = [];
+        this.HavePilots = true;
+        this.HaveFilms = true;
+        this.filmsarr = [];
+      },
+      ClosePopUp() {
+        this.Refresh();
+        this.$emit('ClosePopUp');
+      },
+  },
+};
 </script>

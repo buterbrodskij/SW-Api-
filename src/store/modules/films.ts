@@ -1,33 +1,33 @@
-import {VuexModule,Module, getModule, MutationAction} from 'vuex-module-decorators';
+import {VuexModule, Module, getModule, MutationAction} from 'vuex-module-decorators';
 import store from '@/store';
 import {FilmsModels} from '../models';
-import {GetAllFilms,SearchFilms} from '../api';
+import {GetAllFilms, SearchFilms} from '../api';
 
 
 @Module({
-    namespaced:true,
-    name:'films',
-		store,
-		dynamic:true
+  namespaced: true,
+  name: 'films',
+  store,
+  dynamic: true,
 })
 
-
 class FilmsModules extends VuexModule {
-    films:FilmsModels | null = null
+  films: FilmsModels | null = null;
 
-@MutationAction({mutate: ['films']})
-    async AllFilmsFun(){
-        const AllFilms = await GetAllFilms();
-        return {films:AllFilms}
+  @MutationAction({mutate: ['films']})
+    async AllFilmsFun() {
+      const AllFilms = await GetAllFilms();
+      return {films: AllFilms};
     }
 
-@MutationAction({mutate: ['films']})
-    async SearchAllFilms(query:string){
+  @MutationAction({mutate: ['films']})
+    async SearchAllFilms(query: string) {
         const SerchResults = await SearchFilms(query);
-        return {films:SerchResults}
+        return {films: SerchResults};
     }
-    get AllFilms(){
-        return this.films
-    }
+  get AllFilms() {
+        return this.films;
+  }
 }
-export default getModule(FilmsModules)
+export default getModule(FilmsModules);
+

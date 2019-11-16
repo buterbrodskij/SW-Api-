@@ -95,17 +95,17 @@
 
 
 <script>
-import axios from "axios";
-import { bus } from "@/main";
+import axios from 'axios';
+import { bus } from '@/main';
 export default {
-  name: "FilmsModal",
+  name: 'FilmsModal',
   props: {
       info:{
-        type:Object | null,
+        type: Object | null,
         required: true
       },
       active:{
-        type:Boolean
+        type: Boolean
       }
     },
   data() {
@@ -115,7 +115,6 @@ export default {
       species: [],
       starships: [],
       HaveShips: true,
-      // x : this.$el.querySelectorAll('.info-content-list__item-inner_list')
     };
   },
   mounted() {
@@ -127,7 +126,6 @@ export default {
           });
         });
       }
-
       if (data.homeworld) {
         axios
           .get(data.homeworld)
@@ -151,9 +149,6 @@ export default {
       }
     });
   },
-  updated(){
-    
-  },
   methods: {
     RefreshModal() {
       this.filmsArray = [];
@@ -165,7 +160,7 @@ export default {
     ClosePopUp() {
       this.RefreshModal();
       this.$emit("ClosePopUp");
-    }
-  }
+    },
+  },
 };
 </script>

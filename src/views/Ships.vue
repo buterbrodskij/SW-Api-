@@ -65,88 +65,88 @@
 
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import ShipsModal from "../components/ShipsModal.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import ShipsModal from '../components/ShipsModal.vue';
 import { bus } from '@/main';
 import ShipsModules from '@/store/modules/ships'
 import {ShipsModels} from '@/store/models';
 @Component({
   components: {
-    ShipsModal
+    ShipsModal,
   },
 })
 export default class Films extends Vue {
-      isVisble:Boolean = false;
-      Curentinfo:any = null;
-      disabled:Boolean = false;
-      searchText:string = "";
-      SelectVal: string = "default";
+      isVisble: Boolean = false;
+      Curentinfo: any = null;
+      disabled: Boolean = false;
+      searchText: string = '';
+      SelectVal: string = 'default';
       defaultFiltr :ShipsModels | any = null;
-      ShipsArr:ShipsModels | any = null;
-      ShowShips = true
+      ShipsArr: ShipsModels | any = null;
+      ShowShips = true;
 
-       created(){
-        ShipsModules.AllShipFun().then(() =>{
-          const AllShips:ShipsModels | any  = ShipsModules.AllShips
-            this.ShipsArr = AllShips;
-            this.defaultFiltr = AllShips.results;
-            this.ShowShips = false
-        })
+       created() {
+        ShipsModules.AllShipFun().then(() => {
+          const AllShips: ShipsModels | any  = ShipsModules.AllShips;
+          this.ShipsArr = AllShips;
+          this.defaultFiltr = AllShips.results;
+          this.ShowShips = false;
+        });
       }
-      ShowModal(index:number) {
+      ShowModal(index: number) {
         this.Curentinfo = this.defaultFiltr[index];
         this.isVisble = true;
-        bus.$emit('OpenModal3',this.defaultFiltr[index]);
+        bus.$emit('OpenModal3', this.defaultFiltr[index]);
       }
       CloseModalInner() {
         this.isVisble = false;
       }
       NextPage() {
         this.ShowShips = true;
-          ShipsModules.FetchNextPage(this.ShipsArr.next).then(() =>{
-            this.ShowShips = false;
-            this.ShipsArr = ShipsModules.ships;
-            this.Filtrs();
-        })   
-      }
-      PrevPage() {
-        this.ShowShips = true;
-          ShipsModules.FetchPrevPage(this.ShipsArr.previous).then(() =>{
-            this.ShowShips = false;
-            this.ShipsArr = ShipsModules.ships;
-            this.Filtrs();
-        })  
-      }
-      SearchFun() {
-        this.ShowShips = true;
-        ShipsModules.SearchShips(this.searchText).then(() =>{
+        ShipsModules.FetchNextPage(this.ShipsArr.next).then(() => {
           this.ShowShips = false;
           this.ShipsArr = ShipsModules.ships;
           this.Filtrs();
-        })
+        });  
       }
-      Filtrs() : void{
-        switch(this.SelectVal){
-          case "default":
-             this.defaultFiltr = this.ShipsArr.results
-             break;
+      PrevPage() {
+        this.ShowShips = true;
+        ShipsModules.FetchPrevPage(this.ShipsArr.previous).then(() => {
+          this.ShowShips = false;
+          this.ShipsArr = ShipsModules.ships;
+          this.Filtrs();
+        });
+      }
+      SearchFun() {
+        this.ShowShips = true;
+        ShipsModules.SearchShips(this.searchText).then(() => {
+          this.ShowShips = false;
+          this.ShipsArr = ShipsModules.ships;
+          this.Filtrs();
+        });
+      }
+      Filtrs(): void {
+        switch (this.SelectVal) {
+          case 'default':
+             this.defaultFiltr = this.ShipsArr.results;
+          break;
 
-          case "more":
+          case 'more':
               this.defaultFiltr = [];
-              this.defaultFiltr = this.ShipsArr.results.filter((item : any) => {
-                  return parseInt(item.crew) < 10;
-               })
-               break;
+              this.defaultFiltr = this.ShipsArr.results.filter((item: any) => {
+                return parseInt(item.crew) < 10;
+               });
+          break;
 
-          case "under":
+          case 'under':
               this.defaultFiltr = [];
-              this.defaultFiltr = this.ShipsArr.results.filter((item : any) => {
+              this.defaultFiltr = this.ShipsArr.results.filter((item: any) => {
                 return parseInt(item.crew) > 10;
-              })
-              break;
-        }
+              });
+          break;
+        };
       }
-      destroyed(){
+      destroyed() {
         this.ShowShips = true;
         this.Curentinfo = null;
       }

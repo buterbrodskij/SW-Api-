@@ -19,12 +19,11 @@ const routes = [
     name: 'Actors',
     component: () => import(/* webpackChunkName: "about" */ '../views/Actors.vue'),
   },
-  
 ];
 
 const router = new VueRouter({
   routes,
-  mode:'history',
+  mode: 'history',
 });
 
 export default router;
