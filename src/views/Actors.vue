@@ -136,9 +136,7 @@ export default class Actors extends Vue{
 
           case "mass":
               this.defaultFiltr = [];
-              console.log('dad')
               this.defaultFiltr = this.ActorsArray.results.filter((item : any) => {
-                console.log(item.mass)
                   return parseInt(item.mass) > 100
                })
                break;
