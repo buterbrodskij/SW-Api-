@@ -64,7 +64,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { bus } from '@/main';
-import store from '..//store'
+import store from '..//store';
 import ActorsModal from '../components/ActorsModal.vue';
 import ActorsModules from '@/store/modules/actors';
 import {ActorsModels, ResultsActors} from '@/store/models';

@@ -40,7 +40,7 @@ export async function SearchShips(query: string) {
 // films
 
 export async function GetAllFilms(): Promise<FilmsModels | undefined> {
-  try { 
+  try {
     const respone =  await axios.get('https://swapi.co/api/films/');
     return respone.data;
     } catch (e) {

@@ -68,7 +68,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import ShipsModal from '../components/ShipsModal.vue';
 import { bus } from '@/main';
-import ShipsModules from '@/store/modules/ships'
+import ShipsModules from '@/store/modules/ships';
 import {ShipsModels} from '@/store/models';
 @Component({
   components: {
@@ -81,7 +81,7 @@ export default class Films extends Vue {
   disabled: boolean = false;
   searchText: string = '';
   SelectVal: string = 'default';
-  defaultFiltr :ShipsModels | any = null;
+  defaultFiltr: ShipsModels | any = null;
   ShipsArr: ShipsModels | any = null;
   ShowShips = true;
 
@@ -110,7 +110,7 @@ export default class Films extends Vue {
       this.ShowShips = false;
       this.ShipsArr = ShipsModules.ships;
       this.Filtrs();
-    });  
+    });
   }
 
   PrevPage() {
