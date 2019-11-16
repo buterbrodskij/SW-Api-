@@ -86,8 +86,8 @@ export default {
     };
   },
   mounted() {
-    bus.$on('OpenModal3', (data)=> {
-      if(data.pilots.length !=+ 0) {
+    bus.$on('OpenModal3', (data) => {
+      if(data.pilots.length !== 0) {
         data.pilots.map((item) => {
           axios.get(item).then((data) => {
             this.pilotsArr.push(data.data);
@@ -96,7 +96,7 @@ export default {
       } else {
         this.HavePilots = false;
       }
-      if(data.films.length !== 0){
+      if (data.films.length !== 0){
         data.films.map(item => {
           axios.get(item).then((data) => {
             this.filmsarr.push(data.data);
