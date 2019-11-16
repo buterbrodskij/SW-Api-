@@ -86,7 +86,7 @@ export default class Actors extends Vue {
   defaultFiltr: ActorsModels | any = null;
   created() {
     ActorsModules.AllActorsFun().then(() => {
-      const AllActors : ActorsModels | any  = ActorsModules.GetActors
+      const AllActors : ActorsModels | any  = ActorsModules.GetActors;
       this.ActorsArray = AllActors;
       this.defaultFiltr = AllActors.results;
       this.ShowActors = false;
@@ -135,14 +135,14 @@ export default class Actors extends Vue {
       case 'mass':
         this.defaultFiltr = [];
         this.defaultFiltr = this.ActorsArray.results.filter((item: any) => {
-          return parseInt(item.mass,10) > 100;
+          return parseInt(item.mass, 10) > 100;
         });
         break;
 
       case 'height':
         this.defaultFiltr = [];
         this.defaultFiltr = this.ActorsArray.results.filter((item: any) => {
-          return parseInt(item.height,10) > 100;
+          return parseInt(item.height, 10) > 100;
         });
         break;
     }

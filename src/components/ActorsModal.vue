@@ -100,14 +100,14 @@ import { bus } from '@/main';
 export default {
   name: 'FilmsModal',
   props: {
-      info:{
-        type: Object | null,
-        required: true
-      },
-      active:{
-        type: Boolean
-      }
+    info:{
+      type: Object | null,
+      required: true,
     },
+    active:{
+      type: Boolean,
+    }
+  },
   data() {
     return {
       filmsArray: [],
@@ -118,26 +118,26 @@ export default {
     };
   },
   mounted() {
-    bus.$on("OpenModal", data => {
+    bus.$on('OpenModal', data => {
       if (data.films.length != 0) {
         data.films.map(item => {
           axios.get(item).then(data => {
             this.filmsArray.push(data.data);
           });
         });
-      }
+      };
       if (data.homeworld) {
         axios
           .get(data.homeworld)
           .then(data => (this.homeworld = data.data.name));
-      }
+      };
       if (data.species != 0) {
         data.species.map(item => {
           axios.get(item).then(data => {
             this.species.push(data.data);
           });
         });
-      }
+      };
       if (data.starships.length != 0) {
         data.starships.map(item => {
           axios.get(item).then(data => {
@@ -146,7 +146,7 @@ export default {
         });
       } else {
         this.HaveShips = false;
-      }
+      };
     });
   },
   methods: {

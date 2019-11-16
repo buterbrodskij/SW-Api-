@@ -138,14 +138,14 @@ export default class Films extends Vue {
       case 'more':
         this.defaultFiltr = [];
         this.defaultFiltr = this.ShipsArr.results.filter((item: any) => {
-          return parseInt(item.crew,10) < 10;
+          return parseInt(item.crew, 10) < 10;
         });
         break;
 
       case 'under':
         this.defaultFiltr = [];
         this.defaultFiltr = this.ShipsArr.results.filter((item: any) => {
-          return parseInt(item.crew,10) > 10;
+          return parseInt(item.crew, 10) > 10;
         });
         break;
     }

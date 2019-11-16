@@ -88,83 +88,83 @@
 import axios from 'axios';
 import { bus } from '@/main';
 export default {
-    name:'ActorsModal',
-    props: {
-      info:{
-        type: Object | null,
-        required: true
-      },
-      active:{
-        type: Boolean
-      }
+  name:'ActorsModal',
+  props: {
+    info:{
+      type: Object | null,
+      required: true,
     },
-    data(){
-        return{
-            characters:[],
-            HaveCharacters : true,
-            planets:[],
-            HavePlanets : true,
-            species: [],
-            HaveSpecies : true,
-            StarShips : [],
-            HaveStarShips : true
-        }
-    },
-    mounted(){
-      bus.$on('OpenModal2',(data)=>{
-        if(data.characters != 0){
-          data.characters.map(item =>{
-            axios.get(item).then(data =>{ 
-              this.characters.push(data.data);
-            });
-          });
-        }else{
-          this.HaveCharacters = false
-        };
-        if(data.planets != 0){
-          data.planets.map(item =>{
-            axios.get(item).then(data =>{ 
-              this.planets.push(data.data);
-            });
-          });
-        }else{
-          this.HavePlanets = false
-        };
-        if(data.species != 0){
-          data.species.map(item =>{
-            axios.get(item).then(data =>{ 
-              this.species.push(data.data);
-            });
-          });
-        }else{
-          this.HaveCharacters = false
-        };
-        if(data.starships != 0){
-          data.starships.map(item =>{
-            axios.get(item).then(data =>{ 
-              this.StarShips.push(data.data);
-            });
-          });
-        }else{
-          this.HaveStarShips = false;
-        }
-      })
-    },
-    methods:{
-        RefreshModal(){
-          this.characters = [];
-          this.HaveCharacters = true;
-          this.planets = [];
-          this.HavePlanets = true;
-          this.species = [];
-          this.HaveSpecies = true;
-          this.StarShips = [];
-          this.HaveStarShips = true;
-        },
-        ClosePopUp(){
-            this.RefreshModal()
-            this.$emit('ClosePopUp');   
-        }
+    active:{
+      type: Boolean,
     }
-}
+  },
+  data() {
+    return {
+      characters:[],
+      HaveCharacters : true,
+      planets:[],
+      HavePlanets : true,
+      species: [],
+      HaveSpecies : true,
+      StarShips : [],
+      HaveStarShips : true
+    };
+  },
+  mounted() {
+    bus.$on('OpenModal2',(data)=> {
+      if(data.characters != 0){
+        data.characters.map(item => {
+          axios.get(item).then(data => { 
+            this.characters.push(data.data);
+          });
+        });
+      } else {
+        this.HaveCharacters = false
+      };
+      if(data.planets != 0) {
+        data.planets.map(item => {
+          axios.get(item).then(data => { 
+            this.planets.push(data.data);
+          });
+        });
+      } else {
+        this.HavePlanets = false
+      };
+      if(data.species != 0) {
+        data.species.map(item => {
+          axios.get(item).then(data => { 
+            this.species.push(data.data);
+          });
+        });
+      } else {
+        this.HaveCharacters = false
+      };
+      if(data.starships != 0) {
+        data.starships.map(item => {
+          axios.get(item).then(data => {
+            this.StarShips.push(data.data);
+          });
+        });
+      } else {
+        this.HaveStarShips = false;
+      }
+    });
+  },
+  methods: {
+    RefreshModal() {
+      this.characters = [];
+      this.HaveCharacters = true;
+      this.planets = [];
+      this.HavePlanets = true;
+      this.species = [];
+      this.HaveSpecies = true;
+      this.StarShips = [];
+      this.HaveStarShips = true;
+    },
+    ClosePopUp() {
+        this.RefreshModal();
+        this.$emit('ClosePopUp');
+    },
+  },
+};
 </script>
