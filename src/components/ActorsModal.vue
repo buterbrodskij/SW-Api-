@@ -100,11 +100,11 @@ import { bus } from '@/main';
 export default {
   name: 'FilmsModal',
   props: {
-    info:{
+    info: {
       type: Object | null,
       required: true,
     },
-    active:{
+    active: {
       type: Boolean,
     }
   },
@@ -118,35 +118,35 @@ export default {
     };
   },
   mounted() {
-    bus.$on('OpenModal', data => {
+    bus.$on('OpenModal', (data) => {
       if (data.films.length != 0) {
-        data.films.map(item => {
-          axios.get(item).then(data => {
+        data.films.map((item) => {
+          axios.get(item).then((data) => {
             this.filmsArray.push(data.data);
           });
         });
-      };
+      }
       if (data.homeworld) {
         axios
           .get(data.homeworld)
-          .then(data => (this.homeworld = data.data.name));
-      };
-      if (data.species != 0) {
-        data.species.map(item => {
-          axios.get(item).then(data => {
+          .then((data) => (this.homeworld = data.data.name));
+      }
+      if (data.species !== 0) {
+        data.species.map((item) => {
+          axios.get(item).then((data) => {
             this.species.push(data.data);
           });
         });
-      };
-      if (data.starships.length != 0) {
-        data.starships.map(item => {
-          axios.get(item).then(data => {
+      }
+      if (data.starships.length !== 0) {
+        data.starships.map((item) => {
+          axios.get(item).then((data) => {
             this.starships.push(data.data);
           });
         });
       } else {
         this.HaveShips = false;
-      };
+      }
     });
   },
   methods: {
@@ -159,7 +159,7 @@ export default {
     },
     ClosePopUp() {
       this.RefreshModal();
-      this.$emit("ClosePopUp");
+      this.$emit('ClosePopUp');
     },
   },
 };
