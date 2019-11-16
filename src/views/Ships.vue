@@ -76,9 +76,9 @@ import {ShipsModels} from '@/store/models';
   },
 })
 export default class Films extends Vue {
-      isVisble: Boolean = false;
+      isVisble: boolean = false;
       Curentinfo: any = null;
-      disabled: Boolean = false;
+      disabled: boolean = false;
       searchText: string = '';
       SelectVal: string = 'default';
       defaultFiltr :ShipsModels | any = null;
