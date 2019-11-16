@@ -50,9 +50,9 @@
 <script lang='ts'>
 import Router from 'vue-router';
 import { Component, Vue } from 'vue-property-decorator';
-import Actors from "./views/Actors.vue";
-import Films from "./views/Films.vue";
-import Ships from "./views/Ships.vue";
+import Actors from './views/Actors.vue';
+import Films from './views/Films.vue';
+import Ships from './views/Ships.vue';
 @Component({
   components: {
     Actors,
