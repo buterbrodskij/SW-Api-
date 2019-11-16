@@ -86,7 +86,7 @@ export default {
     };
   },
   mounted() {
-    bus.$on('OpenModal3',(data)=> {
+    bus.$on('OpenModal3', (data)=> {
       if(data.pilots.length !=+ 0) {
         data.pilots.map((item) => {
           axios.get(item).then((data) => {
