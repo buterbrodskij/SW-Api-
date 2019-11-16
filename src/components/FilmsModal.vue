@@ -88,60 +88,60 @@
 import axios from 'axios';
 import { bus } from '@/main';
 export default {
-  name:'ActorsModal',
+  name: 'ActorsModal',
   props: {
-    info:{
+    info: {
       type: Object | null,
       required: true,
     },
-    active:{
+    active: {
       type: Boolean,
-    }
+    },
   },
   data() {
     return {
-      characters:[],
+      characters: [],
       HaveCharacters : true,
-      planets:[],
+      planets: [],
       HavePlanets : true,
       species: [],
       HaveSpecies : true,
       StarShips : [],
-      HaveStarShips : true
+      HaveStarShips : true,
     };
   },
   mounted() {
-    bus.$on('OpenModal2',(data)=> {
-      if(data.characters != 0){
-        data.characters.map(item => {
-          axios.get(item).then(data => { 
+    bus.$on('OpenModal2', (data) => {
+      if (data.characters !== 0) {
+        data.characters.map((item) => {
+          axios.get(item).then((data) => {
             this.characters.push(data.data);
           });
         });
       } else {
-        this.HaveCharacters = false
-      };
-      if(data.planets != 0) {
-        data.planets.map(item => {
-          axios.get(item).then(data => { 
+        this.HaveCharacters = false;
+      }
+      if (data.planets !== 0) {
+        data.planets.map((item) => {
+          axios.get(item).then((data) => {
             this.planets.push(data.data);
           });
         });
       } else {
-        this.HavePlanets = false
-      };
-      if(data.species != 0) {
-        data.species.map(item => {
-          axios.get(item).then(data => { 
+        this.HavePlanets = false;
+      }
+      if (data.species !== 0) {
+        data.species.map((item) => {
+          axios.get(item).then((data) => {
             this.species.push(data.data);
           });
         });
       } else {
-        this.HaveCharacters = false
-      };
-      if(data.starships != 0) {
-        data.starships.map(item => {
-          axios.get(item).then(data => {
+        this.HaveCharacters = false;
+      }
+      if (data.starships !== 0) {
+        data.starships.map((item) => {
+          axios.get(item).then((data) => {
             this.StarShips.push(data.data);
           });
         });

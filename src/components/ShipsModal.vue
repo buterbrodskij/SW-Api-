@@ -67,13 +67,13 @@
 import axios from 'axios';
 import { bus } from '@/main';
 export default {
-  name:'ShipsModal',
+  name: 'ShipsModal',
   props: {
     info: {
       type: Object | null,
       required: true,
     },
-      active:{
+      active: {
       type: Boolean,
     }
   },
@@ -88,8 +88,8 @@ export default {
   mounted() {
     bus.$on('OpenModal3',(data)=> {
       if(data.pilots.length != 0) {
-        data.pilots.map(item => {
-          axios.get(item).then(data => {
+        data.pilots.map((item) => {
+          axios.get(item).then((data) => {
             this.pilotsArr.push(data.data);
           });
         });
@@ -98,7 +98,7 @@ export default {
       };
       if(data.films.length != 0){
         data.films.map(item => {
-          axios.get(item).then(data => {
+          axios.get(item).then((data) => {
             this.filmsarr.push(data.data);
           });
         });
