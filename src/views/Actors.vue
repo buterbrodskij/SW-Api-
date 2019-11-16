@@ -79,14 +79,14 @@ import ActorsModalVue from '../components/ActorsModal.vue';
 export default class Actors extends Vue {
   isVisble: boolean = false;
   Curentinfo: ResultsActors | null = null;
-  searchText: string = "";
+  searchText: string = '';
   SelectVal: string = 'default';
   ActorsArray: ActorsModels | any = null;
   ShowActors = true;
   defaultFiltr: ActorsModels | any = null;
   created() {
     ActorsModules.AllActorsFun().then(() => {
-      const AllActors : ActorsModels | any  = ActorsModules.GetActors;
+      const AllActors: ActorsModels | any  = ActorsModules.GetActors;
       this.ActorsArray = AllActors;
       this.defaultFiltr = AllActors.results;
       this.ShowActors = false;
@@ -126,7 +126,7 @@ export default class Actors extends Vue {
       this.Filtrs();
     });
   }
-  Filtrs(event: any = null): void{
+  Filtrs(event: any = null): void {
     switch (this.SelectVal) {
       case 'default':
         this.defaultFiltr = this.ActorsArray.results;

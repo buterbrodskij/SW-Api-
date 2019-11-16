@@ -39,7 +39,7 @@ class ShipsModules extends VuexModule {
 	  }
 
 
-	get AllShips(){
+	get AllShips() {
     return this.ships;
 	}
 }

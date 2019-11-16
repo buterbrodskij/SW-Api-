@@ -101,8 +101,8 @@ export default class Films extends Vue {
         this.defaultFiltr = [];
         this.defaultFiltr = this.FilmsArray.results.filter((item: any) => {
             return parseInt(item.release_date.substr(0, 4), 10) < 2000;
-          });
-          break;
+        });
+        break;
 
       case 'NewFilms':
         this.defaultFiltr = [];
