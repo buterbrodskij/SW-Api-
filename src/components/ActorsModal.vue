@@ -106,7 +106,7 @@ export default {
     },
     active: {
       type: Boolean,
-    }
+    },
   },
   data() {
     return {
@@ -119,7 +119,7 @@ export default {
   },
   mounted() {
     bus.$on('OpenModal', (data) => {
-      if (data.films.length != 0) {
+      if (data.films.length !== 0) {
         data.films.map((item) => {
           axios.get(item).then((data) => {
             this.filmsArray.push(data.data);
