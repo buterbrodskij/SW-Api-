@@ -1,4 +1,3 @@
-# i-20
 
 ## Project setup
 ```
